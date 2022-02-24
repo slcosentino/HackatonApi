@@ -12,33 +12,35 @@ namespace MotivappAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class MilestonesController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;
-        private readonly IUserService userService;
+        private readonly IMilestoneService milestoneService;
         private readonly IMapper mapper;
 
-        public UsersController(ILogger<UsersController> logger, 
-            IUserService userService,
+        public MilestonesController(ILogger<UsersController> logger, 
+            IMilestoneService milestoneService,
             IMapper mapper)
         {
             _logger = logger;
-            this.userService = userService;
+            this.milestoneService = milestoneService;
             this.mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<UserResponse>> Get()
         {
-            var response = mapper.Map<List<UserResponse>>(await userService.GetUsers());
+            var response = mapper.Map<List<Milestone>>(await milestoneService.GetMilestones());
             return Ok(response);
         }
 
+
+
         [HttpGet]
-        [Route("{userId}")]
-        public async Task<ActionResult<UserResponse>> GetById([FromRoute(Name = "userId")] int userId)
+        [Route("users/{userId}")]
+        public async Task<ActionResult<UserResponse>> GetByUser([FromRoute(Name = "userId")] int userId)
         {
-            var response = mapper.Map<UserResponse>(await userService.GetUser(userId));
+            var response = mapper.Map<List<Milestone>>(await milestoneService.GetMilestonesByUser(userId));
             return Ok(response);
         }
     }

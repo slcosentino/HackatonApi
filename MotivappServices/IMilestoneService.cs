@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MotivappServices
 {
-    public interface IUserService
+    public interface IMilestoneService
     {
-        Task<List<User>> GetUsers();
-        Task<User> GetUser(int userId);
+        Task<List<Milestone>> GetMilestones();
+        Task<List<Milestone>> GetMilestonesByUser(int userId);
     }
 }

@@ -15,6 +15,12 @@ namespace MotivappServices
         {
             this.motivappRepository = motivappRepository;
         }
+
+        public async Task<User> GetUser(int userId)
+        {
+            return await motivappRepository.GetUser(userId);
+        }
+
         public async Task<List<User>> GetUsers()
         {
             return await motivappRepository.GetUsers();

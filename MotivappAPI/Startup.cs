@@ -35,6 +35,7 @@ namespace MotivappAPI
             services.AddScoped<IMotivappRepository, MotivappRepository>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMilestoneService, MilestoneService>();
 
             services.AddAutoMapper(typeof(Startup));
         }
